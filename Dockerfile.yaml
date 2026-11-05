@@ -1,0 +1,11 @@
+FROM centos:latest
+MAINTAINER shikharguupta23@gmail.com   
+RUN yum install -y httpd unzip
+WORKDIR /var/www/html
+ADD https://freewebsitetemplates.com/download/lawfirm/ lawfirm.zip
+RUN unzip lawfirm.zip -d /var/www/html
+RUN cp -rv /var/www/html/lawfirm/* /var/www/html/
+RUN rm -rf /var/www/html/lawfirm /var/www/html/lawfirm.zip
+RUN chmod -R 755 /var/www/html
+CMD ["/usr/sbin/httpd"m "-D", "FOREGROUND"]
+EXPOSE 80
