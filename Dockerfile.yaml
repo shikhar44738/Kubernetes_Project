@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM rockylinux:9
 MAINTAINER shikharguupta23@gmail.com   
 RUN yum install -y httpd unzip
 WORKDIR /var/www/html
