@@ -1,20 +1,20 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: mrdevops
 spec:
   replicas: 2
   selector:
-    matchlabels:
+    matchLabels:
       app: mrdevops
-    template:
-      metadata:
-        labels:
-          app: mrdevops
-      spec:
-        containers:
-          - name: mrdevops
-            image: shikhar101/pipeline-demo
-            imagePullPolicy: Always
-            ports:
-              - containerPort: 80
+  template:
+    metadata:
+      labels:
+        app: mrdevops
+    spec:
+      containers:
+        - name: mrdevops
+          image: shikhar101/pipeline-demo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
