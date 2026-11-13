@@ -1,5 +1,5 @@
 kind: Deployment
-apiversion: apps/v1
+apiVersion: apps/v1
 metadata:
   name: mrdevops
 spec:
@@ -12,7 +12,7 @@ spec:
         labels:
           app: mrdevops
       spec:
-        container:
+        containers:
           - name: mrdevops
             image: shikhar101/pipeline-demo
             imagePullPolicy: Always
