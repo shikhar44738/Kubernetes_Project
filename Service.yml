@@ -1,14 +1,17 @@
-kind: Service                     # Define to Create Service Type Object
 apiVersion: v1
+kind: Service                     # Define to Create Service Type Object
+
 metadata:
   name: mrdevops
   labels:
     app: mrdevops
-  spec:
-    ports:
-      - port: 8080                # Container Port Exposed
-        targetPort: 80            # Pods Port
-        nodeport: 31200
-    selector:
+spec:
+  ports:
+    - port: 8080                # Container Port Exposed
+      targetPort: 80            # Pods Port
+      nodePort: 31200
+    
+  selector:
       app: mrdevops               # Apply all service to any pods which has the specific label
-    type: LoadBalancer            # Specifies the service type i.e CLusterIP or Nodeport
+    
+  type: NodePort            # Specifies the service type i.e CLusterIP or Nodeport
