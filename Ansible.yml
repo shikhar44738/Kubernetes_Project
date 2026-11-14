@@ -17,4 +17,4 @@
       command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Service.yml
     
     - name: Verify Deployment
-      command: kubectl --kubeconfig=/home/ubuntu/.kube/config rollout status deployment/mrdevops
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config rollout status deployment/mrdevops --timeout=180s
