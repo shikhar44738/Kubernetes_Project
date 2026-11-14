@@ -5,13 +5,16 @@
   
   tasks:
     - name: Delete old Deployment
-      command: kubectl delete -f /home/ubuntu/Deployment.yml
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config delete -f /home/ubuntu/Deployment.yml --ignore-not-found=true
 
     - name: delete old Service
-      command: kubectl delete -f /home/ubuntu/Service.yml
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config delete -f /home/ubuntu/Service.yml --ignore-not-found=true
     
     - name: create new Deployment
-      command: kubectl apply -f /home/ubuntu/Deployment.yml
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Deployment.yml
   
     - name: create new Service
-      command: kubectl apply -f /home/ubuntu/Service.yml
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Service.yml
+    
+    - name: Verify Deployment
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config rollout status deployment/mrdevops
