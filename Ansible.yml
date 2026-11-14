@@ -1,20 +1,19 @@
----
 - name: Deploy application on minikube
   hosts: all
   become: true
-  
   tasks:
-    - name: Delete old Deployment
-      command: kubectl --kubeconfig=/home/ubuntu/.kube/config delete -f /home/ubuntu/Deployment.yml --ignore-not-found=true
-
-    - name: delete old Service
-      command: kubectl --kubeconfig=/home/ubuntu/.kube/config delete -f /home/ubuntu/Service.yml --ignore-not-found=true
-    
-    - name: create new Deployment
+    - name: Apply Deployment
       command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Deployment.yml
-  
-    - name: create new Service
+
+    - name: Apply Service
       command: kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /home/ubuntu/Service.yml
-    
+
+    - name: Restart Deployment to pull latest image
+      command: kubectl --kubeconfig=/home/ubuntu/.kube/config rollout restart deployment/mrdevops
+
+    - name: Pause briefly for rollout to register
+      pause:
+        seconds: 5
+
     - name: Verify Deployment
       command: kubectl --kubeconfig=/home/ubuntu/.kube/config rollout status deployment/mrdevops --timeout=300s
